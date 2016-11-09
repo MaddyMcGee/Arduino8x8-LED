@@ -1,4 +1,4 @@
-//Maddy McGee 11/4/16
+//Maddy McGee 11/9/16
 //Code under construction
 //a modification of my pong file to a game of 'breakout'
 //goal to 'destroy' all the lights in rows 1 & 2
@@ -41,9 +41,10 @@ void calcRow1(boolean row[8], int x, int y, int vx, int vy)
 }
 void calcRow2(boolean row[8], int x, int y, int vx, int vy)
 {
-  if((x == 2 ) || (x==1))
+  if((x == 2 ) || (x==0))
   {
     row[y] = false;
+    ;
   }
 }
 void displayRow1(boolean row[8])
@@ -143,11 +144,11 @@ int ballMoveY(int ball, int v) //calculates ball's Y position
 
 int getVX(int ball,int v, int ballY, int padY, boolean firstRow[8],boolean secondRow[8]) //calculates ball's X velocity
 {
-  if ((ball == 6) && (ballY == padY || ballY == padY+1 || ballY == padY-1))//deflect ball if at paddle
+  if (((ball == 6) && (ballY == padY || ballY == padY+1 || ballY == padY-1)) || (ball==0 && secondRow[ballY]))//deflect ball if at paddle OR if there's a wall in front of the ball when moving right
   {
       v = -1;
   }
-  if (ball == 0 || (ball == 1 && firstRow[ballY]) || (ball == 2 && secondRow[ballY]))//deflect on wall/rows
+  if ((ball == 0 && !secondRow[ballY]) || (ball == 1 && firstRow[ballY]) || (ball == 2 && secondRow[ballY]))//deflect on wall/rows
   {
     v = 1;
   }
@@ -161,7 +162,7 @@ int getVY(int ballY,int v, int pad, int ballX, int vp, boolean firstRow[8],boole
   {
     v = vp;//set equal to velocity of paddle
   }
-  if ( ballY == 7 || ballY == 0 || (ballX == 1 && firstRow[ballY]) || (ballX == 2 && secondRow[ballY]))//deflection at walls
+  if ( ballY == 7 || ballY == 0 || (ballX == 1 && firstRow[ballY]) || (ballX == 2 && secondRow[ballY]) || (ballX == 0 && secondRow[ballY]))//deflection at walls
   {
     v = -v;
   }
@@ -453,5 +454,3 @@ void loop()
   }
  
 }
-
-
