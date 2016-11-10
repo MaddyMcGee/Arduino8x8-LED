@@ -44,7 +44,6 @@ void calcRow2(boolean row[8], int x, int y, int vx, int vy)
   if((x == 2 ) || (x==0))
   {
     row[y] = false;
-    ;
   }
 }
 void displayRow1(boolean row[8])
@@ -246,17 +245,6 @@ void reset()
   int cnt = 60;
   while ( cnt >0)
   {
-    /*
-  clearBoard();
-  yVar = paddleMove(yVar);
-  positionDisplayPaddle(yVar);
-  lastY = yVar;
-  delay(50);
-  clearBoard();
-  positionDisplayBall(3,4);
-  delay(50);
-  */
-
   unsigned long currentMillisReset = millis();
   
   if((currentMillisReset - previousMillisResetCalc >= calcTime))
